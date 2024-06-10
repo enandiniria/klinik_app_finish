@@ -14,21 +14,21 @@ class PoliService {
 
   Future<Poli> simpan(Poli poli) async {
     var data = poli.toJson();
-    final Response response = await ApiClient().post('poli', data: data);
+    final Response response = await ApiClient().post('poli', data);
     Poli result = Poli.fromJson(response.data);
     return result;
   }
 
   Future<Poli> ubah(Poli poli, String id) async {
     var data = poli.toJson();
-    final Response response = await ApiClient().put('poli/$id', data: data);
+    final Response response = await ApiClient().put('poli/${id}', data);
     print(response);
     Poli result = Poli.fromJson(response.data);
     return result;
   }
 
   Future<Poli> getById(String id) async {
-    final Response response = await ApiClient().get('poli/$id');
+    final Response response = await ApiClient().get('poli/${id}');
     Poli result = Poli.fromJson(response.data);
     return result;
   }

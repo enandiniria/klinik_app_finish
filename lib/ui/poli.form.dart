@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:klinik_app/model/poli.dart';
+import 'package:klinik_app/service/poli%20_service.dart';
 import 'package:klinik_app/ui/poli_detail.dart';
 
 class PoliForm extends StatefulWidget {
@@ -39,15 +40,19 @@ class _PoliFormState extends State<PoliForm> {
 
   _tombolSimpan() {
     return ElevatedButton(
-        onPressed: () {
-          Poli poli = new Poli(namaPoli: _namaPoliCtrl.text);
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => PoliDetail(poli: poli)));
-        },
-        style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-        child: const Text(
-          "Simpan",
-          style: TextStyle(color: Colors.white),
-        ));
+      onPressed: () async {
+        Poli poli = new Poli(namaPoli: _namaPoliCtrl.text);
+        await PoliService().simpan(poli).then((value) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PoliDetail(poli: value),
+            ),
+          );
+        });
+      },
+      child: const Text("Simpan", style: TextStyle(color: Colors.white)),
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+    );
   }
 }
