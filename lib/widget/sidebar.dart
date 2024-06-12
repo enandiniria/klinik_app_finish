@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:klinik_app/ui/pegawai_page.dart';
 import 'package:klinik_app/ui/poli_page.dart';
 import '../ui/beranda.dart';
 import '../ui/login.dart';
@@ -31,6 +32,14 @@ class Sidebar extends StatelessWidget {
             onTap: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => PoliPage()));
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.people),
+            title: Text("Pegawai"),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => PegawaiPage()));
             },
           ),
           ListTile(
